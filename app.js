@@ -50,7 +50,12 @@ app.post("/people", function(req, res){
 app.delete("/people/:id", function(req, res){
   Person.findBy("id", req.params.id, function(err, person){
     person.destroy(function (err){
-      console.log("You are getting rid of " + person)
+      if(err){
+        console.log("Error Deleting Driver!")
+      } else {
+      console.log("You are getting rid of ")
+      console.log(person);
+      }
     })
   })
   res.redirect("/people");
