@@ -3,7 +3,14 @@
   <head>
   </head>
   <body>
-    People Index
+      <h2> 2014/15 Formula 1 Drivers! </h2>
+
+    <% people.forEach(function (allPeople) { %>
+    <div>
+      <p><a href="/people/<%=allPeople.id%>"> <%= allPeople.firstname %> <%= allPeople.lastname %> </a></p>
+    </div>
+
+    <% }) %>
 
   </body>
 </html>

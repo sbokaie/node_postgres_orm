@@ -3,6 +3,14 @@
   <head>
   </head>
   <body>
+  	<p>Formula 1 Driver Profile</p>
+      <p>Driver name: <%= person.firstname %> </p>
+      <p>Driver name: <%= person.lastname %> </p>
+      <p>Driver ID: <%= person.id %> </p>
 
+    <form method="post" action="/people/<%=person.id%>?_method=put"> 
+	  <p><input type="text" name="person[firstname]" placeholder="edit first name"></p>
+      <p><input type="text" name="person[lastname]" placeholder="edit last name"></p>
+      <p><input type="submit" ></p>
   </body>
 </html>
