@@ -1,1 +1,17 @@
-dispay.ejs
+<!doctype html>
+<html>
+  <head>
+  </head>
+  <body>
+      
+      <p>Driver name: <%= person.firstname %> </p>
+      <p>Driver name: <%= person.lastname %> </p>
+      <p>Driver ID: <%= person.id %> </p>
+
+      <button><a href="/people/<%=person.id%>/edit">Edit</a></button>
+
+      <form method="post" action="/people/<%=person.id%>?_method=delete">
+        <input type="submit" value="Delete Person">
+      </form>
+  </body>
+</html>

@@ -8,7 +8,11 @@ var express = require('express'),
 
 app.set("view engine", "ejs");
 // Middleware
+
+// bodyParser is used for reading forms
 app.use(bodyParser.urlencoded());
+// method override overrides post/get 
+// methods to allow update/delete
 app.use(methodOverride("_method"));
 
 
@@ -25,15 +29,13 @@ app.get("/people/new", function(req, res){
 });
 
 app.get("/people/:id", function(req,res){
-  var personId = req.params.id;
-  Person.findBy('id', personId, function(err, foundPerson){
+  Person.findBy('id', req.params.id, function(err, foundPerson){
     res.render("people/display", { person: foundPerson });
   })
 });
 
 app.get("/people/:id/edit", function(req,res){
-  var personId = req.params.id;
-  Person.findBy("id", personId, function(err, foundPerson){
+  Person.findBy("id", req.params.id, function(err, foundPerson){
     res.render("people/edit", {person: foundPerson });
   })
 });
@@ -41,14 +43,12 @@ app.get("/people/:id/edit", function(req,res){
 
 
 app.post("/people", function(req, res){
-  var newPerson = req.body.person;
-  Person.create(newPerson, function (err, newPerson){})
+  Person.create(req.body.person, function (err, newPerson){})
     res.redirect("/people")
 });
 
 app.delete("/people/:id", function(req, res){
-  var id = req.params.id;
-  Person.findBy("id", id, function(err, person){
+  Person.findBy("id", req.params.id, function(err, person){
     person.destroy(function (err){
       console.log("You are getting rid of " + person)
     })
